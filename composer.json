@@ -1,0 +1,23 @@
+{
+    "name":"hosiplan/nette-autowire-properties",
+    "type":"library",
+    "description":"Lazy-Autowire of properties for Nette PresenterComponents.",
+    "keywords":["nette"],
+    "license":["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+    "authors":[
+        {
+            "name":"Filip Procházka",
+            "homepage":"http://filip-prochazka.com"
+        }
+    ],
+    "require":{
+        "nette/nette":"*"
+    },
+    "support":{
+        "email":"filip@prochazka.su",
+        "issues":"https://github.com/HosipLan/Nette-AutowireProperties/issues"
+    },
+    "autoload":{
+        "classmap":["src/"]
+    }
+}
