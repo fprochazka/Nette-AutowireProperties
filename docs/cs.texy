@@ -1,0 +1,46 @@
+//AutowireProperties// je **trait** (je tedy vyžadováno PHP 5.4!), který do objektů dědících z //PresenterComponent// automaticky doplňuje služby do property (viditelnost musí být protected či public) na základě anotace **@autowire** a anotace **@var**. Je to tedy alternativa pro injektování pomocí metod, které je v nette dostupné.
+
+ Nejjednodušeji vysvětlím na presenteru:
+
+/--code php
+ <?php
+
+ class FooPresenter extends Nette\Application\UI\Presenter
+ {
+
+	use \Kdyby\AutowireProperties; // includneme trait
+
+	/**
+	 * @autowire
+	 * @var \Bar\Foo
+	 */
+ 	protected $foo;
+
+
+ }
+\--
+
+ V příkladu je presenter //FooPresenter//, který má includovaný trait //\Kdyby\AutowireProperties// a následně property //$foo//, která má viditelnost protected a anotaci //@autowire//, díky čemuž je možné injektnout službu. A též má anotaci //@var//, která definuje službu, která má být z kontajneru injektnuta.
+
+ Pro úplnost bez tohoto doplňku, lze v nette využít **inject<name>** metod, které nette automaticky volá a doplňuje též závislosti:
+
+/--code php
+ <?php
+
+ class FooPresenter extends Nette\Application\UI\Presenter
+ {
+
+	 protected $foo;
+
+     /**
+      * @param \Bar\Foo
+      */
+     public function injectSettings(\Bar\Foo $foo) {
+		$this->foo = $foo;
+     }
+
+ }
+\--
+
+Výsledek obou příkladů je stejný při inicializaci //FooPresenter// je v proměnné //$foo// dostupná služba //\Bar\Foo//
+
